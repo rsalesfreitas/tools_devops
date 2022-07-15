@@ -107,6 +107,26 @@
           src: 'https://releases.hashicorp.com/sentinel/0.18.9/sentinel_0.18.9_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
+
+    - block:
+      - name: Installing gomplate 3.9.0
+        become: true
+        get_url:    
+          url: 'https://github.com/hairyhenderson/gomplate/releases/download/v3.9.0/gomplate_linux-amd64'
+          dest: /usr/local/bin/gomplate
+          mode: 755 
+
+    - block:
+      - name: Adding Longsleep/Golang Backports Repository
+        become: true
+        apt_repository:
+          repo: 'ppa:longsleep/golang-backports'
+      - name: Install Golang 
+        become: true
+        apt:
+          name: golang-go
+
+    - block:
       - name: Install Terraform Docs
         shell:
           cmd: 'go install github.com/terraform-docs/terraform-docs@v0.16.0'
@@ -128,13 +148,7 @@
         shell:
           cmd: 'snap install postman'
           warn: false  
-    - block:
-      - name: Installing gomplate 3.9.0
-        become: true
-        get_url:    
-          url: 'https://github.com/hairyhenderson/gomplate/releases/download/v3.9.0/gomplate_linux-amd64'
-          dest: /usr/local/bin/gomplate
-          mode: 755
+
     - block:
       - name: Install Microsoft Key
         become: true
@@ -276,17 +290,6 @@
         shell: 
           cmd: 'snap install zoom-client'
           warn: false
-
-    - block:
-      - name: Adding Longsleep/Golang Backports Repository
-        become: true
-        apt_repository:
-          repo: 'ppa:longsleep/golang-backports'
-      - name: Install Golang 
-        become: true
-        apt:
-          name: golang-go
-
     - block:
       - name: Adding Peek Repository
         become: true
