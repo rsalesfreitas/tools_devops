@@ -115,19 +115,19 @@
         shell:
           cmd: 'go install github.com/aquasecurity/tfsec/cmd/tfsec@latest'
           warn: false
-#    - block:
-#      - name: Install Snap - Core 18
-#        shell: 
-#          cmd: 'snap install core18'
-#          warn: false
-#      - name: Install MailSpring
-#        shell:
-#          cmd: 'snap install mailspring'
-#          warn: false
-#      - name: Install Postman
-#        shell:
-#          cmd: 'snap install postman'
-#          warn: false  
+    - block:
+      - name: Install Snap - Core 18
+        shell: 
+          cmd: 'snap install core18'
+          warn: false
+      - name: Install MailSpring
+        shell:
+          cmd: 'snap install mailspring'
+          warn: false
+      - name: Install Postman
+        shell:
+          cmd: 'snap install postman'
+          warn: false  
     - block:
       - name: Installing gomplate 3.9.0
         become: true
@@ -171,12 +171,12 @@
         become: true
         apt:
           name: teams
-#    - block:
-#      - name: Install Trivy
-#        become: true
-#        shell:
-#          cmd: 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh'
-#          warn: false
+    - block:
+      - name: Install Trivy
+        become: true
+        shell:
+          cmd: 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh'
+          warn: false
 
     - block:
       - name: Install FortiClient Key
@@ -260,22 +260,22 @@
           src: 'https://github.com/weaveworks/eksctl/releases/download/v0.105.0/eksctl_Linux_amd64.tar.gz'
           dest: /usr/local/bin
           remote_src: yes
-#    - block:  
-#      - name: Install Robo3t
-#        shell:
-#          cmd: 'snap install robo3t-snap'
-#          warn: false
-#    - block:
-#      - name: Install Lens - Kubernetes
-#        shell: 
-#          cmd: 'snap install kontena-lens --classic'
-#          warn: false
-    
-#    - block:
-#      - name: Zoom - Client
-#        shell: 
-#          cmd: 'snap install zoom-client'
-#          warn: false
+    - block:  
+      - name: Install Robo3t
+        shell:
+          cmd: 'snap install robo3t-snap'
+          warn: false
+    - block:
+      - name: Install Lens - Kubernetes
+        shell: 
+          cmd: 'snap install kontena-lens --classic'
+          warn: false
+   
+    - block:
+      - name: Zoom - Client
+        shell: 
+          cmd: 'snap install zoom-client'
+          warn: false
 
     - block:
       - name: Adding Longsleep/Golang Backports Repository
