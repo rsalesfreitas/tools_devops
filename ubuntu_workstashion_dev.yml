@@ -42,6 +42,7 @@
           - jmeter-java
           - net-tools
           - openjdk-11-jdk
+          - snap
 
     - block:
       - name: Installing AWS CLI via pip3
@@ -76,7 +77,7 @@
       - name: Install Sublime Repository
         become: true
         apt_repository: 
-          repo: 'deb [arch=amd64] https://download.sublimetext.com/apt/stable/'
+          repo: 'deb [arch=amd64] https://download.sublimetext.com/ apt/stable/'
           state: present
           filename: sublime-text
       - name: Install Sublime
@@ -131,28 +132,26 @@
           name: android-studio
 
     - block:
-      - name: Adding Ubuntu Repository
-        become: true
-        apt_repository:
-          repo: 'ppa:ubuntuhandbook/apps'
-      - name: Install IntelliJ 
-        become: true
-        apt: 
-          name: intellij-idea-community
-
-    - block:
       - name: Install Snap - Core 18
+        become: true
         shell: 
           cmd: 'snap install core18'
           warn: false
       - name: Install MailSpring
+        become: true
         shell:
           cmd: 'snap install mailspring'
           warn: false
       - name: Install Postman
+        become: true
         shell:
           cmd: 'snap install postman'
-          warn: false  
+          warn: false
+      - name: Install Intellij
+        become: true
+        shell:
+          cmd: 'snap install intellij-idea-community --classic --edge'
+          warn: false
 
     - block:
       - name: Install Microsoft Key
@@ -255,12 +254,14 @@
 
     - block:  
       - name: Install Robo3t
+        become: true
         shell:
           cmd: 'snap install robo3t-snap'
           warn: false
    
     - block:
       - name: Zoom - Client
+        become: true
         shell: 
           cmd: 'snap install zoom-client'
           warn: false
