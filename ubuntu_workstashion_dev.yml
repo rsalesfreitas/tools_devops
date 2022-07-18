@@ -76,13 +76,13 @@
       - name: Install Sublime Repository
         become: true
         apt_repository: 
-          repo: 'deb [arch=amd64] https://download.sublimetext.com/arch/stable/x86_64'
+          repo: 'deb [arch=amd64] https://download.sublimetext.com/apt/stable/'
           state: present
-          filename: sublime-txt.deb
+          filename: sublime-text
       - name: Install Sublime
         become: true
         apt:
-          name: sublime-txt
+          name: sublime-text
 
 
     - block:
