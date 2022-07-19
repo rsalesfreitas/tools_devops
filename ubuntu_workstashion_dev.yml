@@ -140,6 +140,11 @@
         shell:
           cmd: 'snap install mailspring'
           warn: false
+      - name: Install BlueMail
+        become: true
+        shell:
+          cmd: 'snap install bluemail'
+          warn: false          
       - name: Install Postman
         become: true
         shell:

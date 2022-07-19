@@ -139,14 +139,22 @@
           warn: false
     - block:
       - name: Install Snap - Core 18
+        become: true
         shell: 
           cmd: 'snap install core18'
           warn: false
       - name: Install MailSpring
+        become: true
         shell:
           cmd: 'snap install mailspring'
           warn: false
+      - name: Install BlueMail
+        become: true
+        shell:
+          cmd: 'snap install bluemail'
+          warn: false          
       - name: Install Postman
+        become: true
         shell:
           cmd: 'snap install postman'
           warn: false  
