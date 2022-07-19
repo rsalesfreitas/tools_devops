@@ -21,7 +21,6 @@
           - ca-certificates
           - gnupg
           - python3-pip
-          - python3-env
           - make
           - git
           - bash-completion
@@ -84,7 +83,6 @@
         become: true
         apt:
           name: sublime-text
-
 
     - block:
       - name: Install DBeaver Key
