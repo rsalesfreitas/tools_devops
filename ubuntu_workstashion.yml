@@ -287,17 +287,20 @@
           remote_src: yes
     - block:  
       - name: Install Robo3t
+        become: true
         shell:
           cmd: 'snap install robo3t-snap'
           warn: false
     - block:
       - name: Install Lens - Kubernetes
+        become: true
         shell: 
           cmd: 'snap install kontena-lens --classic'
           warn: false
    
     - block:
       - name: Zoom - Client
+        become: true
         shell: 
           cmd: 'snap install zoom-client'
           warn: false
