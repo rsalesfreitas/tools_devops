@@ -21,7 +21,9 @@
           - ca-certificates
           - gnupg
           - python3-pip
-          - python3-env
+          - libkrb5-dev
+          - heimdal-dev
+          - pipx
           - make
           - git
           - bash-completion
@@ -48,6 +50,13 @@
         pip:
           name: awscli
           executable: pip3
+
+    - block:
+      - name: Installing AWS ADFS via pipx
+        become: true
+        pip:
+          name: aws-adfs
+          executable: pipx
     
     - block:
       - name: Install Google Key
