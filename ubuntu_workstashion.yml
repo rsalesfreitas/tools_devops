@@ -21,9 +21,9 @@
           - ca-certificates
           - gnupg
           - python3-pip
-          - libkrb5-dev
-          - heimdal-dev
-          - pipx
+#          - libkrb5-dev
+#          - heimdal-dev
+#          - pipx
           - make
           - git
           - bash-completion
@@ -51,12 +51,12 @@
           name: awscli
           executable: pip3
 
-    - block:
-      - name: Installing AWS ADFS via pipx
-        become: true
-        pip:
-          name: aws-adfs
-          executable: pipx
+#    - block:
+#      - name: Installing AWS ADFS via pipx
+#        become: true
+#        pip:
+#          name: aws-adfs
+#          executable: pipx
     
     - block:
       - name: Install Google Key
@@ -118,6 +118,18 @@
           src: 'https://releases.hashicorp.com/sentinel/0.18.9/sentinel_0.18.9_linux_amd64.zip'
           dest: /usr/local/bin
           remote_src: yes
+      
+      - name: Installing Terraform-Docs
+        become: true
+        shell:
+          cmd: 'curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.16.0/terraform-docs-v0.16.0-$(uname)-amd64.tar.gz && tar -xzf terraform-docs.tar.gz && chmod +x terraform-docs && mv terraform-docs /usr/local/bin'
+          warn: false
+
+      - name: Installing TfSec
+        become: true
+        shell:
+          cmd: 'wget https://github.com/aquasecurity/tfsec/releases/download/v1.26.1/tfsec_1.26.1_linux_amd64.tar.gz && tar -xzf tfsec_1.26.1_linux_amd64.tar.gz && chmod +x tfsec && mv tfsec /usr/local/bin'
+          warn: false    
 
     - block:
       - name: Installing gomplate 3.9.0
@@ -137,17 +149,6 @@
         apt:
           name: golang-go
 
-    - block:
-      - name: Install Terraform Docs
-        become: true
-        shell:
-          cmd: 'go install github.com/terraform-docs/terraform-docs@v0.16.0'
-          warn: false
-      - name: Install Terraform Sec
-        become: true
-        shell:
-          cmd: 'go install github.com/aquasecurity/tfsec/cmd/tfsec@latest'
-          warn: false
     - block:
       - name: Install Snap - Core 18
         become: true
